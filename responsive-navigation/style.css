@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&display=swap');
+
+/* variabel */
+:root {
+    --primaryColor: #161F28;
+    --secondaryColor: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: var(--secondaryColor);
+    font-family: 'karla', sans-serif;
+}
+
+html {
+    font-size: 16px;
+    overflow-x: hidden;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: var(--primaryColor);
+    position: relative;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  
+    background-color: var(--primaryColor);
+    width: 1200px;
+    padding: 1rem 0;
+    margin: 0 15%;
+}
+
+.logo {
+    font-weight: 700;
+    text-align: center;
+}
+
+.nav-links ul {
+    display: flex;
+    gap: 3rem;
+}
+
+.nav-links ul li {
+    list-style: none;
+    font-weight: 700;
+}
+
+.nav-links ul li a{
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all .4s ease;
+}
+
+.nav-links ul li a:hover{
+    border-bottom: 1px solid var(--secondaryColor);
+}
+
+.nav-links input[type="checkbox"] {
+    display: none;
+}
+
+label {
+    display: none;
+    flex-direction: column;
+    gap: .3rem;
+    cursor: pointer;
+}
+
+label span {
+    padding: .1rem .8rem;
+    background-color: var(--secondaryColor);
+    visibility: visible;
+    opacity: 1;
+    transition: all .4s ease;
+}
+
+label span:nth-child(2),
+label span:nth-child(4) {
+    transform-origin: 0 0;
+}
+
+label input[type="checkbox"]:checked ~ span:nth-child(2) {
+    transform: rotate(45deg) translate(-.1rem, -.1rem);
+}
+label input[type="checkbox"]:checked ~ span:nth-child(3) {
+    visibility: hidden;
+    opacity: 0;
+}
+label input[type="checkbox"]:checked ~ span:nth-child(4) {
+    transform: rotate(-45deg) translate(-.1rem, -.1rem);
+}
+
+/* responsive breakpoint */
+@media screen and (max-width: 1024px) {
+    .nav-links > ul {
+        display: none;
+    }
+    
+    .nav-links label ul {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 80vw;
+        height: 100vh;
+        background-color: var(--primaryColor);
+        transform: translateX(100%);
+        transition: all .4s ease;
+        z-index: -2;
+    }    
+
+    label {
+        display: flex;
+    }
+
+    label input[type="checkbox"]:checked ~ ul {
+        transform: translateX(0);
+    }
+}
