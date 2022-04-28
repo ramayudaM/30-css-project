@@ -1,0 +1,356 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* variabel */
+:root {
+    --primaryColor: #037491;
+    --white: #FFFFFF;
+    --black: #222222;
+    --gray: #F8F8F9;
+    --grayColor: #858888;
+    --border: 1px solid rgba(34, 34, 34, .1);
+
+    --success: #2FA9A4;
+    --secondarySuccess: #F3FDFC;
+    --error: #DA483F;
+    --secondaryError: #FAE7E6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'roboto', sans-serif;
+}
+
+html {
+    font-size: 16px;
+    background-color: var(--primaryColor);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+section {
+    width: 1480px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--white);
+    padding: 2rem 2rem;
+    background-color: var(--primaryColor);
+}
+
+header p {
+    font-size: .8rem;
+    margin-top: .2rem;
+}
+
+header p mark {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--white);
+    padding-left: .6rem;
+    background-color: transparent;
+}
+
+header a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 500;
+    position: relative;
+}
+
+header a::after {
+    content: '';
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+    width: 120%;
+    height: .2rem;
+    background-color: var(--white);
+    border: 1px solid var(--primaryColor);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--white);
+    border-radius: 0 0 .4rem .4rem;
+}
+
+table thead tr th {
+    color: var(--black);
+    font-size: .9rem;
+    background-color: var(--gray);
+    border-top: var(--border);
+    border-bottom: var(--border);
+    padding: 1rem 1.4rem;
+    text-align: left;
+    position: sticky;
+    top: 0;
+}
+
+table tbody tr td {
+    color: var(--black);
+    font-size: .9rem;
+    border-bottom: var(--border);
+    padding: 1rem 1.4rem;
+}
+
+table tbody tr td:first-child {
+    font-weight: 700;
+}
+
+table tbody tr td:nth-child(3) {
+    font-weight: 500;
+}
+
+table tbody tr td .head {
+    font-weight: 500;
+}
+
+table tbody tr td .foot {
+    color: rgba(34, 34, 34, .6);
+    font-size: .86rem;
+    padding-top: .2rem;
+}
+
+table tbody tr td .status {
+    display: inline-block;
+    font-weight: 700;
+    padding: .4rem 1rem;
+    border-radius: .4rem;
+}
+table tbody tr td .status.success {
+    color: var(--success);
+    background-color: var(--secondarySuccess);
+}
+table tbody tr td .status.error {
+    color: var(--error);
+    background-color: var(--secondaryError);
+}
+
+table tbody tr td .delivery-status {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+}
+
+table tbody tr td .delivery-status .delivery {
+    padding: .3rem;
+    border-radius: 50%;
+}
+table tbody tr td .delivery-status .delivery.success {
+    background-color: var(--success);
+}
+table tbody tr td .delivery-status .delivery.error {
+    background-color: var(--error);
+}
+
+/* responsive breakpoints */
+@media screen and (max-width: 1480px) {
+    main {
+        display: inline;
+        background-color: var(--primaryColor);
+    }  
+
+    header {
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 99;
+    }
+
+    section {
+        width: 100%;
+    }
+
+    table {
+        background-color: transparent;
+    }
+
+    table thead tr th {
+        display: none;
+    }
+    
+    table tbody {
+        width: 100%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        padding: 2rem;
+        gap: 2rem;
+    }
+    
+    table tbody tr {
+        display: grid;
+        grid-template-areas:
+            'created distribution distribution'
+            'ref ref status'
+            'ref ref status'
+            'customor customor customor'
+            'products products products'
+            'price price price'
+            'delivery delivery delivery';
+        grid-template-columns: 1.6fr 1fr;
+        background-color: var(--white);
+        border-radius: .6rem;
+    }
+
+    table tbody tr td {
+        padding: 1rem 0;
+        position: relative;
+    }
+
+    table tbody tr td:first-child {
+        grid-area: ref;
+        display: flex;
+        border-bottom: none;
+        margin-left: 1.4rem;
+        font-size: 1.1rem;
+    }
+
+    table tbody tr td:nth-child(2) {
+        grid-area: created;
+        display: flex;
+        margin-left: 1.4rem;
+        color: var(--grayColor);
+    }
+
+    table tbody tr td:nth-child(2) .foot,
+    table tbody tr td:nth-child(7) .foot {
+        color: var(--grayColor);
+    }
+
+    table tbody tr td:nth-child(3) {
+        grid-area: customor;
+        display: flex;
+        justify-content: flex-end;
+        border-bottom: none;
+        margin: 0 1.4rem;
+        padding: .7rem 1.4rem;
+        background-color: #F8F8F9;
+        border-radius: .6rem;
+        font-weight: 500;
+    }
+
+    table tbody tr td:nth-child(4) {
+        grid-area: products;
+        display: flex;
+        justify-content: flex-end;
+        border-bottom: none;
+        margin: 0 1.4rem;
+        padding: .7rem 1.4rem;
+        font-weight: 500;
+    }   
+
+    table tbody tr td:nth-child(5) {
+        grid-area: ref;
+        display: flex;
+        align-items: center;
+        border-bottom: none;
+        margin-top: 1.6rem;
+        border-bottom: none;
+        margin-left: 1.4rem;
+        font-size: .8rem;
+    }
+
+    table tbody tr td:nth-child(6) {
+        grid-area: ref;
+        display: flex;
+        align-items: center;
+        margin-left: 10rem;        
+        margin-top: 1.6rem;
+        border-bottom: none;
+        font-size: .8rem;
+    }
+
+    table tbody tr td:nth-child(7) {
+        grid-area: distribution;
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 1.4rem;
+        color: var(--grayColor);
+    }
+
+    table tbody tr td:nth-child(8) {
+        grid-area: status;
+        display: flex;
+        align-items: center;
+        border-bottom: none;
+        margin-right: 1.4rem;
+    }   
+
+    table tbody tr td:nth-child(9) {
+        grid-area: delivery;
+        display: flex;
+        justify-content: flex-end;
+        border-bottom: none;
+        margin: 0 1.4rem;
+        padding: .7rem 1.4rem;
+        margin-bottom: 1rem;
+        font-weight: 500;
+    }   
+
+    table tbody tr td:nth-child(10) {
+        grid-area: price;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        border-bottom: none;
+        margin: 0 1.4rem;
+        padding: .7rem 1.4rem;
+        background-color: #F8F8F9;
+        border-radius: .6rem;
+        font-weight: 500;
+    }
+
+    table tbody tr td:nth-child(10) .head::after{
+        content: '.\00a0';
+    }
+
+    table tbody tr td .head {
+        font-weight: 300;
+    }
+    
+    table tbody tr td .head::after {
+        content: ',\00a0';
+    }
+    
+    table tbody tr td .foot {
+        color: var(--black);
+        font-size: .9rem;
+        padding-top: 0;
+    }
+    
+    table tbody tr td::before{
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        padding-left: 1rem;
+        color: var(--grayColor);
+        font-weight: 300;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    table tbody {
+        width: 100%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        padding: 0;
+        gap: .6rem;
+    }
+
+    table tbody tr {
+        border-radius: 0;
+    }
+}
