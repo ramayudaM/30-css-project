@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100dvh;
+  gap: 2em;
+}
+main header {
+  text-align: center;
+}
+main header a {
+  text-decoration: none;
+  color: salmon;
+  font-weight: 600;
+}
+main header a:hover {
+  text-decoration: underline;
+}
+main section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 44em;
+  gap: 1em;
+}
+main section .image-display {
+  width: 10em;
+  height: 12em;
+  background-color: gray;
+  border-radius: 0.4em;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+main section .image-display:hover {
+  transform: scale(1.1);
+  box-shadow: 10px 10px 80px rgba(0, 0, 0, 0.8);
+}
+main section .image-display img {
+  width: 100%;
+}
+main section .modal-image {
+  width: 100dvw;
+  height: 100dvh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+main section .modal-image .modal-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1em;
+  height: 100%;
+}
+main section .modal-image .heading {
+  display: flex;
+  justify-content: space-between;
+}
+main section .modal-image .heading p {
+  color: #e7e7e7;
+  font-size: 1em;
+  font-weight: bold;
+}
+main section .modal-image .heading a {
+  text-decoration: none;
+  color: #e7e7e7;
+}
+main section .modal-image .heading a:hover {
+  text-decoration: underline;
+}
+main section .modal-image .image-modal {
+  width: 0;
+  height: 0;
+  transition: 0.4s;
+  position: relative;
+}
+main section .modal-image .image-modal .arrow-left {
+  font-size: 2em;
+  font-weight: 900;
+  color: #e7e7e7;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: transform 0.4s ease-in-out;
+  right: calc(100% + 1em);
+}
+main section .modal-image .image-modal .arrow-right {
+  font-size: 2em;
+  font-weight: 900;
+  color: #e7e7e7;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: transform 0.4s ease-in-out;
+  left: calc(100% + 1em);
+}
+main section .modal-image .image-modal img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0.4em;
+}
+main section .modal-image:target {
+  opacity: 1;
+  visibility: visible;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+main section .modal-image:target .heading {
+  width: 30%;
+}
+main section .modal-image:target .image-modal {
+  width: 30%;
+  height: 70%;
+}
+
+/*# sourceMappingURL=style.css.map */

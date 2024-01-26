@@ -1,0 +1,155 @@
+$one-em: 1em;
+$ten-em: 10em;
+$black-opacity: rgba(0, 0, 0, 0.8);
+$white: #e7e7e7;
+
+@mixin center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin arrow-pos($is-left: true) {
+  font-size: 2em;
+  font-weight: 900;
+  color: $white;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: transform .4s ease-in-out;
+
+  @if $is-left {
+    right: calc(100% + 1em);  
+  } @else {
+    left: calc(100% + 1em);
+  }
+}
+
+@mixin link-style {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none
+}
+
+main {
+  @include center-content();
+  flex-direction: column;
+  height: 100dvh;
+  gap: $one-em + 1;
+
+  header {
+    text-align: center;
+
+    a {
+      @include link-style();
+      color: salmon;
+      font-weight: 600;
+    }
+  }
+
+  section {
+    @include center-content();
+    flex-wrap: wrap;
+    width: $ten-em * 4 + 4;
+    gap: $one-em;
+
+    .image-display {
+      width: $ten-em;
+      height: 12em;
+      background-color: gray;
+      border-radius: .4em;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all .3s ease-in-out;
+    
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: 10px 10px 80px $black-opacity;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .modal-image {  
+      width: 100dvw;
+      height: 100dvh;
+      position: fixed;
+      top: 0;
+	    left: 0;
+      opacity: 0; 
+      visibility: hidden;
+
+      .modal-wrap {
+        @include center-content();
+        flex-direction: column;
+        gap: 1em;
+        height: 100%;
+      }
+
+      .heading {
+        display: flex;
+        justify-content: space-between;
+
+        p {
+          color: $white;
+          font-size: 1em;
+          font-weight: bold;
+        }
+
+        a {
+          @include link-style();
+          color: $white;
+        }
+      }
+
+      .image-modal {
+        width: 0;
+        height: 0;
+        transition: .4s;
+        position: relative;
+
+        .arrow-left {
+          @include arrow-pos();
+        }
+        
+        .arrow-right {
+          @include arrow-pos(false);
+        }
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border-radius: .4em;
+        }
+      }
+    }
+
+    .modal-image:target {
+      opacity: 1;
+      visibility: visible;
+      background-color: $black-opacity;  
+      
+      .heading {
+        width: 30%;
+      }
+
+      .image-modal {
+        width: 30%;
+        height: 70%;
+      }
+    }
+  }
+}
